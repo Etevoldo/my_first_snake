@@ -1,2 +1,5 @@
 //ignore vsc config folder
 .vscode
+
+//ignore binaries
+*.exe
