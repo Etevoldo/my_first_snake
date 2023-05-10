@@ -10,5 +10,7 @@ void scrdraw(char key);
 /*main engine the computes the logit of every frame 
   based on information about the snake and fruit objects*/
 void start();
+/*detect if the snake has bitten the fruit*/
+int ate(int fruit_x_pos, int fruit_y_pos, int snake_x_pos, int snake_y_pos);
 
 #endif

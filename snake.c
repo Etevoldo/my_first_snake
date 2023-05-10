@@ -9,7 +9,7 @@ struct snake initialize(){
 	struct snake snake;
 	snake.size = 8;
 	snake.x_pos = 10;
-	snake.y_pos = 20;
+	snake.y_pos = 8;
 	for (i = 0; i < CANVAS_HEIGHT; i++){
 		for (j = 0; j < CANVAS_WIDTH; j++){
 			snake.canvas_ocupy[j][i] = 0;

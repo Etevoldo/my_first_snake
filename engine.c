@@ -2,8 +2,9 @@
 #include <conio.h>
 #include <unistd.h>
 #include <windows.h>
-#include "snake.h"
 #include "engine.h"
+#include "fruit.h"
+#include "snake.h"
 
 int debugloop = 0;
 
@@ -28,16 +29,29 @@ void scrdraw(char key){
 void start(){
 	int i, j;
 	struct snake snake;
+	struct fruit fruit;
 	char key;
 	snake = initialize();
+	fruit = fruit_initialize(snake.x_pos, snake.y_pos);
 	while (1){
 		Sleep(300);
 		key = snake_move(&snake);
+		if (ate(fruit.x_pos, fruit.y_pos, snake.x_pos, snake.y_pos))
+			fruit_respawn(&fruit, snake.x_pos, snake.y_pos);
 		render_snake(&snake, canvas);
+		fruit_render(&fruit, canvas);
 		scrdraw(key);
 		//debug
-		printf("\nx:%d y:%d size:%d\n", snake.x_pos, snake.y_pos, snake.size);
+		printf("\nsx:%d y:%d size:%d\n", snake.x_pos, snake.y_pos, snake.size);
+		printf("xf:%d yf:%d\n", fruit.x_pos, fruit.y_pos);
 		if (key == 'q')
 			break;
 	}
+}
+
+int ate(int fruit_x_pos, int fruit_y_pos, int snake_x_pos, int snake_y_pos){
+	if (fruit_x_pos == snake_x_pos && fruit_y_pos == snake_y_pos)
+		return 1;
+	else 
+		return 0;
 }
