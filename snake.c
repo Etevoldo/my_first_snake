@@ -7,7 +7,7 @@
 struct snake initialize(){
 	int i, j;
 	struct snake snake;
-	snake.size = 8;
+	snake.size = 4;
 	snake.x_pos = 10;
 	snake.y_pos = 8;
 	for (i = 0; i < CANVAS_HEIGHT; i++){
@@ -15,8 +15,9 @@ struct snake initialize(){
 			snake.canvas_ocupy[j][i] = 0;
 		}
 	}
-	snake.canvas_ocupy[snake.x_pos][snake.y_pos] = snake.size - 1;
+	snake.canvas_ocupy[snake.x_pos][snake.y_pos] = snake.size;
 	snake.keydir = RIGHT;
+	snake.alive = 1;
 	return snake;
 }
 
@@ -39,8 +40,8 @@ char snake_move(struct snake *snake){
 			snake->x_pos--;
 			break;
 	}
+	snake_is_alive(snake);
 	snake->canvas_ocupy[snake->x_pos][snake->y_pos] = snake->size;
-
 	return snake->keydir;
 }
 
@@ -66,4 +67,15 @@ void render_snake(struct snake *snake, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT])
 				canvas[j][i] = 0;
 		}
 	}
+}
+
+void snake_is_alive(struct snake *snake){
+	// canvas borders colision detection
+	if (snake->x_pos == CANVAS_WIDTH || snake->x_pos < 0 || 
+		snake->y_pos == CANVAS_HEIGHT || snake->y_pos < 0)
+		snake->alive = 0;
+	// ideia: rewrite this to make the snake warp through the oposite side
+	// snake's own body colision detection
+	if (snake->canvas_ocupy[snake->x_pos][snake->y_pos] > 0)
+		snake->alive = 0;
 }

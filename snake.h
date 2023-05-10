@@ -13,6 +13,7 @@ struct snake{
 	char keydir;
 	/*space ocupied by the snake's body*/
 	int canvas_ocupy[CANVAS_WIDTH][CANVAS_HEIGHT];
+	int alive;
 };
 /*initialize a snake object*/
 struct snake initialize();
@@ -22,5 +23,6 @@ char snake_move(struct snake *snake);
 void render_snake(struct snake *snake, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT]);
 /*reduce body lenght*/
 void snake_update_body(int canvas_ocupy[CANVAS_WIDTH][CANVAS_HEIGHT]);
-
+/*detect if the snake died, return 1 if its alive*/
+void snake_is_alive(struct snake *snake);
 #endif
