@@ -62,11 +62,11 @@ void start(){
 		fruit_render(&fruit, canvas);
 		scrdraw(key);
 		//debug
-		printf("\nsx:%d y:%d size:%d alive:%d\n",
+		printf("\nsnake x:%d snake y:%d size:%d alive:%d\n",
 				 snake.x_pos, snake.y_pos, snake.size, snake.alive);
-		printf("xf:%d yf:%d\n", fruit.x_pos, fruit.y_pos);
+		printf("fruit x:%d fruit y:%d\n", fruit.x_pos, fruit.y_pos);
 		if (!snake.alive){
-		 	printf("You died\n Score: %d\n", snake.size - 1);
+		 	printf("You died\nScore: %d\n", snake.size - 1);
 		 	printf("Press any key to continue");
 			getch();
 			break;
