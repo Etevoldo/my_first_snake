@@ -21,7 +21,18 @@ void scrdraw(char key){
 	for (i = 0; i < CANVAS_HEIGHT; i++){
 		printf("#");
 		for (j = 0; j < CANVAS_WIDTH; j++){
-			printf("%c", (canvas[j][i] == 1) ? '0' : ' ');
+			switch (canvas[j][i]){
+				case 0:
+					printf("%c", ' ');
+					break;
+				case -1:
+					printf("%c", 'F');
+					break;
+				default:
+					printf("%c", '0');
+					break;
+			}
+			//printf("%c", (canvas[j][i] == 1) ? '0' : ' ');
 		}
 		printf("#\n");
 	}
