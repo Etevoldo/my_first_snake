@@ -5,8 +5,10 @@
 #define CANVAS_HEIGHT 15
 #define CANVAS_WIDTH 40
 
-
+/*render a frame*/
 void scrdraw(char key);
+/*main engine the computes the logit of every frame 
+  based on information about the snake and fruit objects*/
 void start();
 
 #endif
