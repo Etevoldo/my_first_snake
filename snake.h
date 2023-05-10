@@ -1,9 +1,9 @@
 #ifndef SNAKE_H
 #define SNAKE_H
-#define UP 'w'
-#define DOWN 's'
-#define LEFT 'a'
-#define RIGHT 'd'
+#define UP 'W'
+#define DOWN 'S'
+#define LEFT 'A'
+#define RIGHT 'D'
 #include "engine.h"
 
 struct snake{
@@ -25,4 +25,6 @@ void snake_render(struct snake *snake, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT])
 void snake_update_body(int canvas_ocupy[CANVAS_WIDTH][CANVAS_HEIGHT]);
 /*detect if the snake died, return 1 if its alive*/
 void snake_is_alive(struct snake *snake);
+/*helper function to check if we are trying to go backyards*/
+int snake_reverse_key(int key);
 #endif

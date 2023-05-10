@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <conio.h>
+#include <ctype.h>
 #include <unistd.h>
 #include "snake.h"
 #include "engine.h"
@@ -22,9 +23,14 @@ struct snake initialize(){
 }
 
 char snake_move(struct snake *snake){
-	int i, j;
+	int i, j, cur_key;
 	if (kbhit()){
-		snake->keydir = getch();
+		cur_key = toupper(getch());
+		if (cur_key == UP || cur_key == DOWN || cur_key == LEFT || cur_key == RIGHT){
+			if (snake->keydir != snake_reverse_key(cur_key) && snake->keydir != cur_key){
+				snake->keydir = cur_key;
+			}
+		}
 	}
 	switch (snake->keydir){
 		case UP:
@@ -78,4 +84,21 @@ void snake_is_alive(struct snake *snake){
 	// snake's own body colision detection
 	if (snake->canvas_ocupy[snake->x_pos][snake->y_pos] > 0)
 		snake->alive = 0;
+}
+
+int snake_reverse_key(int key){
+	switch (key){
+		case 'W':
+			return 'S';
+			break;
+		case 'S':
+			return 'W';
+			break;
+		case 'A':
+			return 'D';
+			break;
+		case 'D':
+			return 'A';
+			break;
+	}
 }
