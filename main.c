@@ -16,6 +16,6 @@ int main(void){
         default:
             break;
     }
-    printf("\033[H\033[J");
+    clrscr();
     return 0;
 }
