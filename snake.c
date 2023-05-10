@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <unistd.h>
 #include "snake.h"
+#include "engine.h"
 
 struct snake initialize(){
 	int i, j;

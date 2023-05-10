@@ -1,12 +1,10 @@
 #ifndef SNAKE_H
 #define SNAKE_H
-
-#define CANVAS_HEIGHT 15
-#define CANVAS_WIDTH 40
 #define UP 'w'
 #define DOWN 's'
 #define LEFT 'a'
 #define RIGHT 'd'
+#include "engine.h"
 
 struct snake{
 	int size;
