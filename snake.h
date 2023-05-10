@@ -20,5 +20,7 @@ struct snake initialize();
 char snake_move(struct snake *snake);
 /*update the canvas array to fit the snake locations*/
 void render_snake(struct snake *snake, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT]);
+/*reduce body lenght*/
+void snake_update_body(int canvas_ocupy[CANVAS_WIDTH][CANVAS_HEIGHT]);
 
 #endif

@@ -36,8 +36,12 @@ void start(){
 	while (1){
 		Sleep(300);
 		key = snake_move(&snake);
-		if (ate(fruit.x_pos, fruit.y_pos, snake.x_pos, snake.y_pos))
+		if (ate(fruit.x_pos, fruit.y_pos, snake.x_pos, snake.y_pos)){
+			snake.size++;
 			fruit_respawn(&fruit, snake.x_pos, snake.y_pos);
+		}
+		else
+			snake_update_body(snake.canvas_ocupy);
 		render_snake(&snake, canvas);
 		fruit_render(&fruit, canvas);
 		scrdraw(key);

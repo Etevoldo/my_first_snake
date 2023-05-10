@@ -41,14 +41,18 @@ char snake_move(struct snake *snake){
 	}
 	snake->canvas_ocupy[snake->x_pos][snake->y_pos] = snake->size;
 
+	return snake->keydir;
+}
+
+void snake_update_body(int canvas_ocupy[CANVAS_WIDTH][CANVAS_HEIGHT]){
+	int i, j;
 	/*reduce snake positions by 1*/
 	for (i = 0; i < CANVAS_HEIGHT; i++){
 		for (j = 0; j < CANVAS_WIDTH; j++){
-			if (snake->canvas_ocupy[j][i] > 0);
-				snake->canvas_ocupy[j][i]--;
+			if (canvas_ocupy[j][i] > 0);
+				canvas_ocupy[j][i]--;
 		}
 	}
-	return snake->keydir;
 }
 
 void render_snake(struct snake *snake, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT]){
