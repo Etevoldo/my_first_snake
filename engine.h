@@ -2,8 +2,9 @@
 #define ENGINE_H
 
 #define clrscr() printf("\033[H\033[J")
-#define CANVAS_HEIGHT 15
-#define CANVAS_WIDTH 40
+
+#define CANVAS_HEIGHT 4
+#define CANVAS_WIDTH 8
 
 /*render a frame*/
 void scrdraw(char key);

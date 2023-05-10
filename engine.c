@@ -14,7 +14,10 @@ void scrdraw(char key){
 	clrscr();
 	//debug
 	printf("counter of frames: %d, last key: %c\n", debugloop++, key);
-	printf("##########################################\n");
+	for (i = 0; i < CANVAS_WIDTH + 1; i++){
+		printf("#");
+	}
+		printf("\n");
 	for (i = 0; i < CANVAS_HEIGHT; i++){
 		printf("#");
 		for (j = 0; j < CANVAS_WIDTH; j++){
@@ -22,7 +25,10 @@ void scrdraw(char key){
 		}
 		printf("#\n");
 	}
-	printf("##########################################\n");
+	for (i = 0; i < CANVAS_WIDTH + 1; i++){
+		printf("#");
+	}
+		printf("\n");
 
 }
 
