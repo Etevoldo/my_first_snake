@@ -42,7 +42,7 @@ void start(){
 		}
 		else
 			snake_update_body(snake.canvas_ocupy);
-		render_snake(&snake, canvas);
+		snake_render(&snake, canvas);
 		fruit_render(&fruit, canvas);
 		scrdraw(key);
 		//debug

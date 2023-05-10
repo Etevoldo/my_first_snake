@@ -56,7 +56,7 @@ void snake_update_body(int canvas_ocupy[CANVAS_WIDTH][CANVAS_HEIGHT]){
 	}
 }
 
-void render_snake(struct snake *snake, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT]){
+void snake_render(struct snake *snake, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT]){
 	int i, j;
 	
 	for (i = 0; i < CANVAS_HEIGHT; i++){
