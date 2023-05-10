@@ -10,7 +10,7 @@ struct fruit{
 /*initialize fruit, put in a random spot on the canvas*/
 struct fruit fruit_initialize(int snake_x_pos, int snake_y_pos);
 /*respawn fruit*/
-void fruit_respawn(struct fruit *fruit, int snake_x_pos, int snake_y_pos);
+void fruit_respawn(struct fruit *fruit, int canvas_ocupy[CANVAS_WIDTH][CANVAS_HEIGHT]);
 /*put the fruit on the canvas*/
 void fruit_render(struct fruit *fruit, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT]);
 
