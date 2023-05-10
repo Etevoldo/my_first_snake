@@ -14,7 +14,7 @@ void scrdraw(char key){
 	clrscr();
 	//debug
 	printf("counter of frames: %d, last key: %c\n", debugloop++, key);
-	for (i = 0; i < CANVAS_WIDTH + 1; i++){
+	for (i = 0; i < CANVAS_WIDTH + 2; i++){
 		printf("#");
 	}
 		printf("\n");
@@ -32,11 +32,10 @@ void scrdraw(char key){
 					printf("%c", '0');
 					break;
 			}
-			//printf("%c", (canvas[j][i] == 1) ? '0' : ' ');
 		}
 		printf("#\n");
 	}
-	for (i = 0; i < CANVAS_WIDTH + 1; i++){
+	for (i = 0; i < CANVAS_WIDTH + 2; i++){
 		printf("#");
 	}
 		printf("\n");
@@ -51,7 +50,7 @@ void start(){
 	snake = initialize();
 	fruit = fruit_initialize(snake.x_pos, snake.y_pos);
 	while (1){
-		Sleep(300);
+		Sleep(400);
 		key = snake_move(&snake);
 		if (ate(fruit.x_pos, fruit.y_pos, snake.x_pos, snake.y_pos)){
 			snake.size++;
