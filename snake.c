@@ -8,8 +8,8 @@ struct snake initialize(){
 	int i, j;
 	struct snake snake;
 	snake.size = 4;
-	snake.x_pos = 10;
-	snake.y_pos = 8;
+	snake.x_pos = CANVAS_WIDTH / 2;
+	snake.y_pos = CANVAS_HEIGHT / 2;
 	for (i = 0; i < CANVAS_HEIGHT; i++){
 		for (j = 0; j < CANVAS_WIDTH; j++){
 			snake.canvas_ocupy[j][i] = 0;
