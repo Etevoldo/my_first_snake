@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <unistd.h>
+#include <windows.h>
 #include "snake.h"
 #include "engine.h"
 
@@ -30,7 +31,7 @@ void start(){
 	char key;
 	snake = initialize();
 	while (1){
-		sleep(1);
+		Sleep(300);
 		key = snake_move(&snake);
 		render_snake(&snake, canvas);
 		scrdraw(key);
