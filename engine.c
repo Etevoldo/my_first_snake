@@ -71,6 +71,9 @@ void start(){
 			getch();
 			break;
 		}
+		else if (snake.size == 32){
+			printf("fez ai hipotenusa ai, o triangulo retangulo\n");
+		}
 	}
 }
 
