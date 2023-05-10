@@ -55,8 +55,12 @@ void start(){
 		printf("\nsx:%d y:%d size:%d alive:%d\n",
 				 snake.x_pos, snake.y_pos, snake.size, snake.alive);
 		printf("xf:%d yf:%d\n", fruit.x_pos, fruit.y_pos);
-		if (key == 'q')
+		if (!snake.alive){
+		 	printf("You died\n Score: %d\n", snake.size - 1);
+		 	printf("Press any key to continue");
+			getch();
 			break;
+		}
 	}
 }
 
