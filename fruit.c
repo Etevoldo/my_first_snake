@@ -20,3 +20,7 @@ void fruit_respawn(struct fruit *fruit, int snake_x_pos, int snake_y_pos){
     fruit->y_pos = rand() % CANVAS_HEIGHT;
     return;
 }
+
+void fruit_render(struct fruit *fruit, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT]){
+    canvas[fruit->x_pos][fruit->y_pos] = 1;
+}
