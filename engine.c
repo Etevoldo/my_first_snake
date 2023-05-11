@@ -6,14 +6,12 @@
 #include "fruit.h"
 #include "snake.h"
 
-int debugloop = 0;
 
 char canvas[CANVAS_WIDTH][CANVAS_HEIGHT] = {{0}, {0}};
 void scrdraw(char key){
 	int i, j;
 	clrscr();
 	//debug
-	printf("counter of frames: %d, last key: %c\n", debugloop++, key);
 	for (i = 0; i < CANVAS_WIDTH + 2; i++){
 		printf("#");
 	}
@@ -43,7 +41,7 @@ void scrdraw(char key){
 }
 
 void start(){
-	int i, j;
+	int i, j, debugloop = 0;
 	struct snake snake;
 	struct fruit fruit;
 	char key;
@@ -62,6 +60,7 @@ void start(){
 		fruit_render(&fruit, canvas);
 		scrdraw(key);
 		//debug
+		printf("counter of frames: %d, last key: %c\n", debugloop++, key);
 		printf("\nsnake x:%d snake y:%d size:%d alive:%d\n",
 				 snake.x_pos, snake.y_pos, snake.size, snake.alive);
 		printf("fruit x:%d fruit y:%d\n", fruit.x_pos, fruit.y_pos);
@@ -73,6 +72,9 @@ void start(){
 		}
 		else if (snake.size == 32){
 			printf("fez ai hipotenusa ai, o triangulo retangulo\n");
+		 	printf("Press any key to continue");
+			getch();
+			break;
 		}
 	}
 }
