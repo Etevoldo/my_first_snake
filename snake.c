@@ -62,7 +62,7 @@ char snake_move(Snake snake){
 			snake->pos.x_pos--;
 			break;
 	}
-	snake_is_alive(snake);
+	snake_update_live(snake);
 	snake->canvas_ocupy[snake->pos.x_pos][snake->pos.y_pos] = snake->size;
 	return snake->keydir;
 }
@@ -91,7 +91,7 @@ void snake_render(Snake snake, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT]){
 	}
 }
 
-int snake_is_alive(Snake snake){
+void snake_update_live(Snake snake){
 	// canvas borders colision detection
 	if (snake->pos.x_pos == CANVAS_WIDTH || snake->pos.x_pos < 0 || 
 		snake->pos.y_pos == CANVAS_HEIGHT || snake->pos.y_pos < 0)
@@ -100,10 +100,10 @@ int snake_is_alive(Snake snake){
 	// snake's own body colision detection
 	if (snake->canvas_ocupy[snake->pos.x_pos][snake->pos.y_pos] > 0)
 		snake->alive = 0;
-	if (snake->alive == 0)
-		return 0;
-	else 
-		return 1;
+}
+
+int snake_is_alive(Snake snake){
+	return snake->alive;
 }
 
 int snake_reverse_key(int key){

@@ -41,7 +41,7 @@ void scrdraw(char key){
 }
 
 void start(){
-	int i, j, debugloop = 0;
+	int i, j, snake_size = 4, debugloop = 0;
 	Snake snake;
 	struct fruit fruit;
 	struct pos snake_pos;
@@ -55,6 +55,7 @@ void start(){
 		snake_pos = snake_positions(snake);
 		if (ate(fruit.x_pos, fruit.y_pos, snake_pos)){
 			snake_increase(snake);
+			snake_size++; //updating internal variable for debugging purpurses
 			fruit_respawn(&fruit, snake);
 		}
 		else
@@ -63,26 +64,22 @@ void start(){
 		fruit_render(&fruit, canvas);
 		scrdraw(key);
 		//debug
-		/*
 		printf("counter of frames: %d, last key: %c\n", debugloop++, key);
 		printf("\nsnake x:%d snake y:%d size:%d alive:%d\n",
-				 snake.x_pos, snake.y_pos, snake.size, snake.alive);
+				 snake_pos.x_pos, snake_pos.y_pos, snake_size, snake_is_alive(snake));
 		printf("fruit x:%d fruit y:%d\n", fruit.x_pos, fruit.y_pos);
-		*/
-		if (snake_is_alive(snake)){
-		 	printf("You died");
+		if (!snake_is_alive(snake)){
+		 	printf("You died!\n");
 		 	printf("Press any key to continue");
 			getch();
 			break;
 		}
-		/*
-		else if (snake.size == 32){
+		else if (snake_size == 32){
 			printf("fez ai hipotenusa ai, o triangulo retangulo\n");
 		 	printf("Press any key to continue");
 			getch();
 			break;
 		}
-		*/
 	}
 }
 

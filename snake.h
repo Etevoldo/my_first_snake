@@ -26,7 +26,9 @@ char snake_move(Snake snake);
 void snake_render(Snake snake, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT]);
 /*reduce body lenght*/
 void snake_update_body(Snake snake);
-/*detect if the snake died, return 1 if its alive*/
+/*detect if the snake died*/
+void snake_update_live(Snake snake);
+/*boolean function to return living status of the snake*/
 int snake_is_alive(Snake snake);
 /*helper function to check if we are trying to go backyards*/
 int snake_reverse_key(int key);
