@@ -47,8 +47,7 @@ void start(){
 	struct pos snake_pos;
 	char key;
 	snake = initialize();
-	snake_pos = snake_positions(snake);
-	fruit = fruit_initialize();
+	fruit = fruit_initialize(snake);
 	while (1){
 		Sleep(400);
 		key = snake_move(snake);

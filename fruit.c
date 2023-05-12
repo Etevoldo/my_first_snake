@@ -3,12 +3,19 @@
 #include "fruit.h"
 #include "engine.h"
 
-struct fruit fruit_initialize(){
+struct fruit fruit_initialize(Snake snake){
+    int spawn_col = 1;
     srand((unsigned) time(NULL));
     struct fruit fruit;
-    fruit.x_pos = rand() % CANVAS_WIDTH;
-    fruit.y_pos = rand() % CANVAS_HEIGHT;
-    //todo: add a conditional to not spawn on the body
+    while (spawn_col == 1){
+        fruit.x_pos = rand() % CANVAS_WIDTH;
+        fruit.y_pos = rand() % CANVAS_HEIGHT;
+        if (snake_is_ocupy(snake, fruit.x_pos, fruit.y_pos)){
+            spawn_col = 1;
+        }
+        else 
+            spawn_col = 0;
+    }
     return fruit;
 }
 
