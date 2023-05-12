@@ -9,10 +9,6 @@
 struct snake_type{
 	int size;
 	struct pos pos;
-	/*
-	int x_pos;
-	int y_pos;
-	*/
 	char keydir;
 	int canvas_ocupy[CANVAS_WIDTH][CANVAS_HEIGHT];
 	int alive;

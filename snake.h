@@ -7,16 +7,6 @@
 #include "engine.h"
 
 typedef struct snake_type *Snake;
-/*
-struct snake{
-	int size;
-	int x_pos;
-	int y_pos;
-	char keydir;
-	int canvas_ocupy[CANVAS_WIDTH][CANVAS_HEIGHT];
-	int alive;
-};
-*/
 
 /*initialize a snake object*/
 Snake initialize();
@@ -37,6 +27,6 @@ struct pos snake_positions(Snake snake);
 /*first argument is the snake in question, and the
   other two are positions to check if the space if ocupied*/
 int snake_is_ocupy(Snake snake, int x_pos, int y_pos);
-
+/*increase snake's size*/
 void snake_increase(Snake snake);
 #endif
