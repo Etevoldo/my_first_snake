@@ -3,7 +3,7 @@
 #include "fruit.h"
 #include "engine.h"
 
-struct fruit fruit_initialize(int snake_x_pos, int snake_y_pos){
+struct fruit fruit_initialize(){
     srand((unsigned) time(NULL));
     struct fruit fruit;
     fruit.x_pos = rand() % CANVAS_WIDTH;
@@ -12,13 +12,13 @@ struct fruit fruit_initialize(int snake_x_pos, int snake_y_pos){
     return fruit;
 }
 
-void fruit_respawn(struct fruit *fruit, int canvas_ocupy[CANVAS_WIDTH][CANVAS_HEIGHT]){
+void fruit_respawn(struct fruit *fruit, Snake snake){
     int spawn_col = 1;
     srand((unsigned) time(NULL));
     while (spawn_col == 1){
         fruit->x_pos = rand() % CANVAS_WIDTH;
         fruit->y_pos = rand() % CANVAS_HEIGHT;
-        if (canvas_ocupy[fruit->x_pos][fruit->y_pos] > 0){
+        if (snake_is_ocupy(snake, fruit->x_pos, fruit->y_pos)){
             spawn_col = 1;
         }
         else 
