@@ -1,5 +1,7 @@
 # Foreword
 
+![](https://imgur.com/EmpBGVn)
+
 This is a little snake game I made as an selfproposed exercise to use everything i've learnt from C and Git
 
 # Build instructions 
