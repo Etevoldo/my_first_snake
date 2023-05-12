@@ -5,17 +5,21 @@
 
 int main(void){
     char key;
+    clrscr();
     printf("Snake game\n");
-    printf("Choose an option:\nS: Start game\nQ: Quit\n");
-    key = getch();
-    key = toupper(key);
-    switch (key){
-        case 'S':
-            start();
-            break;
-        default:
-            break;
-    }
+    do {
+        printf("Choose an option:\nS: Start game\nQ: Quit\n");
+        key = getch();
+        key = toupper(key);
+        switch (key){
+            case 'S':
+                start();
+                break;
+            default:
+                break;
+        }
+        clrscr();
+    }while(key != 'Q');
     clrscr();
     return 0;
 }

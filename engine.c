@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <windows.h>
 #include "engine.h"
 #include "fruit.h"
@@ -69,13 +70,19 @@ void start(){
 		printf("fruit x:%d fruit y:%d\n", fruit.x_pos, fruit.y_pos);
 		if (!snake_is_alive(snake)){
 		 	printf("You died!\n");
+			Sleep(1000);
+			printf("Score: %d\n", snake_size);
+			Sleep(1000);
 		 	printf("Press any key to continue");
+			free(snake);
 			getch();
 			break;
 		}
 		else if (snake_size == 32){
 			printf("fez ai hipotenusa ai, o triangulo retangulo\n");
+			Sleep(800);
 		 	printf("Press any key to continue");
+			free(snake);
 			getch();
 			break;
 		}
