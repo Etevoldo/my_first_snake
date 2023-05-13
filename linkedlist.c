@@ -40,3 +40,14 @@ void list_traverse(List list){
         printf("x: %d\ty: %d\n", cur->pos.x_pos, cur->pos.y_pos);
     }
 }
+
+int list_search_if_exists(List list, struct pos search_pos){
+    struct node *cur;
+    for (cur = list->last;
+         cur != NULL;
+         cur = cur->next){
+        if (cur->pos.x_pos == search_pos.x_pos && cur->pos.y_pos == search_pos.y_pos)
+            return 1;
+    }
+    return 0;
+}
