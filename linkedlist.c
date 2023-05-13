@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "linkedlist.h"
 
 struct node{
@@ -15,8 +14,8 @@ List list_initialize(){
     List list = malloc(sizeof(struct list_type));
     if (list == NULL)
         exit(EXIT_FAILURE);
-    list->first->next = NULL;
-    list->last->next = NULL;
+    list->first = NULL;
+    list->last = NULL;
     return list;
 }
 
@@ -31,23 +30,13 @@ void list_add(List list, struct pos new_pos){
         list->first = new_node;
     list->last = new_node;
 }
-/*
-Snake initialize(){
-	int i, j;
-	Snake snake = malloc(sizeof(struct snake_type));
-	if (snake == NULL)
-		exit(EXIT_FAILURE);
-	snake->size = 4;
-	snake->pos.x_pos = CANVAS_WIDTH / 2;
-	snake->pos.y_pos = CANVAS_HEIGHT / 2;
-	for (i = 0; i < CANVAS_HEIGHT; i++){
-		for (j = 0; j < CANVAS_WIDTH; j++){
-			snake->canvas_ocupy[j][i] = 0;
-		}
-	}
-	snake->canvas_ocupy[snake->pos.x_pos][snake->pos.y_pos] = snake->size;
-	snake->keydir = RIGHT;
-	snake->alive = 1;
-	return snake;
+
+//debug
+void list_traverse(List list){
+    struct node *cur;
+    for (cur = list->last;
+         cur != NULL;
+         cur = cur->next){
+        printf("x: %d\ty: %d\n", cur->pos.x_pos, cur->pos.y_pos);
+    }
 }
-*/

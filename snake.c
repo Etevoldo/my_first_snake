@@ -59,10 +59,12 @@ char snake_move(Snake snake){
 			break;
 	}
 	snake_update_live(snake);
+	//TODO: add to the list function
 	snake->canvas_ocupy[snake->pos.x_pos][snake->pos.y_pos] = snake->size;
 	return snake->keydir;
 }
 
+//TODO: exclude the first item on the list
 void snake_update_body(Snake snake){
 	int i, j;
 	/*reduce snake positions by 1*/
