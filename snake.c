@@ -5,12 +5,14 @@
 #include <unistd.h>
 #include "snake.h"
 #include "engine.h"
+#include "linkedlist.h"
 
 struct snake_type{
 	int size;
 	struct pos pos;
+	struct pos behind;
 	char keydir;
-	int canvas_ocupy[CANVAS_WIDTH][CANVAS_HEIGHT];
+	List canvas_ocupy;
 	int alive;
 };
 
@@ -20,15 +22,12 @@ Snake initialize(){
 	Snake snake = malloc(sizeof(struct snake_type));
 	if (snake == NULL)
 		exit(EXIT_FAILURE);
-	snake->size = 4;
+	snake->size = 1;
 	snake->pos.x_pos = CANVAS_WIDTH / 2;
 	snake->pos.y_pos = CANVAS_HEIGHT / 2;
-	for (i = 0; i < CANVAS_HEIGHT; i++){
-		for (j = 0; j < CANVAS_WIDTH; j++){
-			snake->canvas_ocupy[j][i] = 0;
-		}
-	}
-	snake->canvas_ocupy[snake->pos.x_pos][snake->pos.y_pos] = snake->size;
+
+	snake->canvas_ocupy = list_initialize();
+	list_add(snake->canvas_ocupy, snake->pos);
 	snake->keydir = RIGHT;
 	snake->alive = 1;
 	return snake;
@@ -59,34 +58,21 @@ char snake_move(Snake snake){
 			break;
 	}
 	snake_update_live(snake);
-	//TODO: add to the list function
-	snake->canvas_ocupy[snake->pos.x_pos][snake->pos.y_pos] = snake->size;
+	list_add(snake->canvas_ocupy, snake->pos);
 	return snake->keydir;
 }
 
 //TODO: exclude the first item on the list
 void snake_update_body(Snake snake){
-	int i, j;
-	/*reduce snake positions by 1*/
-	for (i = 0; i < CANVAS_HEIGHT; i++){
-		for (j = 0; j < CANVAS_WIDTH; j++){
-			if (snake->canvas_ocupy[j][i] > 0);
-				snake->canvas_ocupy[j][i]--;
-		}
-	}
+	struct pos behind;
+	snake->behind = list_exclude_first(snake->canvas_ocupy);
 }
 
 void snake_render(Snake snake, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT]){
 	int i, j;
 	
-	for (i = 0; i < CANVAS_HEIGHT; i++){
-		for (j = 0; j < CANVAS_WIDTH; j++){
-			if (snake->canvas_ocupy[j][i] > 0) 
-				canvas[j][i] = 1;
-			else
-				canvas[j][i] = 0;
-		}
-	}
+	list_fill_canvas(snake->canvas_ocupy, canvas);
+	canvas[snake->behind.x_pos][snake->behind.y_pos] = 0;
 }
 
 void snake_update_live(Snake snake){
@@ -96,11 +82,13 @@ void snake_update_live(Snake snake){
 		snake->alive = 0;
 	// ideia: rewrite this to make the snake warp through the oposite side
 	// snake's own body colision detection
-	if (snake->canvas_ocupy[snake->pos.x_pos][snake->pos.y_pos] > 0)
+	if (list_search_if_exists(snake->canvas_ocupy, snake->pos))
 		snake->alive = 0;
 }
 
 int snake_is_alive(Snake snake){
+	if (!snake->alive)
+		list_free(snake->canvas_ocupy);
 	return snake->alive;
 }
 
@@ -124,9 +112,9 @@ int snake_reverse_key(int key){
 struct pos snake_positions(Snake snake){
 	return snake->pos;
 }
-
 int snake_is_ocupy(Snake snake, int x_pos, int y_pos){
-	if (snake->canvas_ocupy[x_pos][y_pos] > 0)
+	struct pos search = {.x_pos = x_pos, y_pos = y_pos};
+	if (list_search_if_exists(snake->canvas_ocupy, search))
 		return 1;
 	else 
 		return 0;
