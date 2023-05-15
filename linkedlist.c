@@ -59,10 +59,33 @@ int list_search_if_exists(List list, struct pos search_pos){
     return 0;
 }
 
-void list_exclude_first(List list){
+struct pos list_exclude_first(List list){
     struct node *temp;
+    struct pos excluded;
     temp = list->first->prev;
+    excluded = temp->next->pos;
     free(temp->next);
     temp->next = NULL;
     list->first = temp;
+    return excluded;
+}
+
+void list_fill_canvas(List list, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT]){
+    struct node *cur;
+    for (cur = list->last;
+         cur != NULL;
+         cur = cur->next){
+            canvas[cur->pos.x_pos][cur->pos.y_pos] = 1;
+        }
+}
+
+void list_free(List list){
+    struct node *cur, *prev;
+    for (cur = list->last, prev = NULL;
+         cur != NULL;
+         prev = cur, cur = cur->next){
+            free(prev);
+        }
+        free(cur);
+        free(list);
 }
