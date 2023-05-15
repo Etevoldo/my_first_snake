@@ -3,6 +3,7 @@
 struct node{
     struct pos pos;
     struct node *next;
+    struct node *prev;
 };
 
 struct list_type{
@@ -26,8 +27,13 @@ void list_add(List list, struct pos new_pos){
 
     new_node->pos = new_pos;
     new_node->next = list->last;
-    if (list->first == NULL)
+    if (list->first == NULL){
         list->first = new_node;
+    }
+    else{
+        list->last->prev = new_node;
+    }
+    new_node->prev = NULL;
     list->last = new_node;
 }
 
@@ -37,7 +43,8 @@ void list_traverse(List list){
     for (cur = list->last;
          cur != NULL;
          cur = cur->next){
-        printf("x: %d\ty: %d\n", cur->pos.x_pos, cur->pos.y_pos);
+        printf("x: %d\ty: %d\tprev:%p\tthis:%p\tnext:%p\n", 
+                cur->pos.x_pos, cur->pos.y_pos, cur->prev, cur, cur->next);
     }
 }
 
@@ -50,4 +57,12 @@ int list_search_if_exists(List list, struct pos search_pos){
             return 1;
     }
     return 0;
+}
+
+void list_exclude_first(List list){
+    struct node *temp;
+    temp = list->first->prev;
+    free(temp->next);
+    temp->next = NULL;
+    list->first = temp;
 }
