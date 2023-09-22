@@ -10,7 +10,7 @@ This is a little snake game I made as an selfproposed exercise to use everything
 
 # Future plans
 
-- put some datastructure of some sort (probably a queue as the snake's tail).
+- ~~put some datastructure of some sort (probably a queue as the snake's tail).~~ done with a doubly linked list
 - add makefiles.
 - better organization of header files.
 - check portability.
