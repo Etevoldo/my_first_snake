@@ -62,7 +62,6 @@ char snake_move(Snake snake){
 	return snake->keydir;
 }
 
-//TODO: exclude the first item on the list
 void snake_update_body(Snake snake){
 	struct pos behind;
 	snake->behind = list_exclude_first(snake->canvas_ocupy);
@@ -113,7 +112,7 @@ struct pos snake_positions(Snake snake){
 	return snake->pos;
 }
 int snake_is_ocupy(Snake snake, int x_pos, int y_pos){
-	struct pos search = {.x_pos = x_pos, y_pos = y_pos};
+	struct pos search = {x_pos = x_pos, y_pos = y_pos};
 	if (list_search_if_exists(snake->canvas_ocupy, search))
 		return 1;
 	else 
