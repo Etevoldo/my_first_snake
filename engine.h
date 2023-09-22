@@ -18,5 +18,6 @@ void scrdraw(char key);
 void start();
 /*detect if the snake has bitten the fruit*/
 int ate(int fruit_x_pos, int fruit_y_pos, struct pos snake_pos);
+void clear_canvas();
 
 #endif

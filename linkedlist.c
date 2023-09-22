@@ -80,12 +80,12 @@ void list_fill_canvas(List list, char canvas[CANVAS_WIDTH][CANVAS_HEIGHT]){
 }
 
 void list_free(List list){
-    struct node *cur, *prev;
-    for (cur = list->last, prev = NULL;
-         cur != NULL;
-         prev = cur, cur = cur->next){
-            free(prev);
-        }
+    struct node *cur, *next_n;
+    cur = list->last;
+    while (cur != NULL){
+        next_n = cur->next;
         free(cur);
-        free(list);
+        cur = next_n;
+    }
+    free(list);
 }
