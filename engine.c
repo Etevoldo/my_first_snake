@@ -53,21 +53,27 @@ void start(){
 		Sleep(400);
 		key = snake_move(snake);
 		snake_pos = snake_positions(snake);
+
 		if (ate(fruit.x_pos, fruit.y_pos, snake_pos)){
 			snake_increase(snake);
 			snake_size++; //updating internal variable for debugging purpurses
 			fruit_respawn(&fruit, snake);
 		}
-		else
+		else {
 			snake_update_body(snake);
+		}
+
+
 		snake_render(snake, canvas);
 		fruit_render(&fruit, canvas);
 		scrdraw(key);
-		//debug
+
+		//debug 
 		printf("counter of frames: %d, last key: %c\n", debugloop++, key);
-		printf("\nsnake x:%d snake y:%d size:%d alive:%d\n",
-				 snake_pos.x_pos, snake_pos.y_pos, snake_size, snake_is_alive(snake));
+		printf("\nsnake x:%d snake y:%d size:%d\n",
+				 snake_pos.x_pos, snake_pos.y_pos, snake_size);
 		printf("fruit x:%d fruit y:%d\n", fruit.x_pos, fruit.y_pos);
+		
 		if (!snake_is_alive(snake)){
 		 	printf("You died!\n");
 			Sleep(1000);
@@ -87,6 +93,7 @@ void start(){
 			break;
 		}
 	}
+	clear_canvas();
 }
 
 int ate(int fruit_x_pos, int fruit_y_pos, struct pos snake_pos){
@@ -94,4 +101,13 @@ int ate(int fruit_x_pos, int fruit_y_pos, struct pos snake_pos){
 		return 1;
 	else 
 		return 0;
+}
+
+void clear_canvas(){
+	int i, j;
+	for (i = 0; i != CANVAS_WIDTH; i++){
+		for (j = 0; j != CANVAS_HEIGHT; j++){
+			canvas[i][j] = 0;
+		}
+	}
 }
